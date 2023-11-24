@@ -18,14 +18,6 @@
   .visible {
     display: block;
   }
-  
-  /* .card-container.visible { */
-    /* transform: translateX(-${props => props.currentIndex * 100}%);  */
-    /* Move the container to reveal the current card */
-  /* } */
-  
-
-  /* index.css or your global CSS file */
 
 /* ... existing styles ... */
 
@@ -46,5 +38,14 @@
   
   .dot.active {
     background-color: #ffffff; /* White color for active dot */
+  }
+
+  .background-image {
+    background-image: url('./assets/authImage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat:no-repeat;
+    min-height: 100vh;
+    width: 100%;
   }
   

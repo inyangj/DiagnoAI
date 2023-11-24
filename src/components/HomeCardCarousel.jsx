@@ -43,7 +43,7 @@ const CardCarousel = () => {
   };
 
     return (
-        <div className="bg-darkgray opacity-95 rounded-xl w-[60%] h-fit mb-20 lg:w-72">
+        <div className="bg-darkgray opacity-95 rounded-xl w-[60%] h-fit mb-24 lg:w-72">
           <div className="flex flex-col px-3 md:px-8 py-6 justify-center items-center gap-3 relative text-slate-400">
       <div className="card-container">
         {cards.map((card, index) => (
