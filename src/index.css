@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Font 1 - Regular */
+@font-face {
+  font-family: 'Nohemi-Regular';
+  font-weight: 400;
+  src: local('Nohemi-Regular'), url('./fonts/Nohemi-Regular.ttf') format('tff');
+}
+
+/* Font 1 - Bold */
+@font-face {
+  font-family: 'Nohemi-Bold';
+  font-weight: 700;
+  src: local('Nohemi-Bold') url('./fonts/Nohemi-Bold.otf') format('otf');
+}
+
+/* Font 2 - Regular */
+@font-face {
+  font-family: 'AeonikTRAIL-Regular';
+  font-weight: 400;
+  src: local('AeonikTRAIL-Regular') url('./fonts/AeonikTRIAL-Regular.otf') format('otf');
+}
+
+/* Font 2 - Bold */
+@font-face {
+  font-family: 'AeonikTRAIL-Bold';
+  font-weight: 700;
+  src: local('AeonikTRAIL-Bold') url('./fonts/AeonikTRIAL-Bold.otf') format('otf');
+}
