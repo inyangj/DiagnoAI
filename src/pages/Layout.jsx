@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import homeimg from "../assets/authImage.png"
 import healthicon from '../assets/Vector.png'
-import CardCarousel from "../components/cardCarousel"
+import HomeCardCarousel from "../components/HomeCardCarousel"
 
 const Layout = ({children}) => {
 
@@ -9,17 +9,17 @@ const Layout = ({children}) => {
     return (
         <div>
             <div className="flex flex-col gap-y-6 md:flex-row w-full mx-auto bg-white">
-                <div className="w-full hidden lg:block relative lg:w-1/2">
-                    <img src={homeimg} alt="home image" className="w-full" />
-                    <div className="absolute top-16 left-24 flex flex-row gap-2">
+            <div className="background-image hidden lg:flex lg:w-1/2">
+                    <div className="absolute top-16 left-6 flex flex-row gap-2">
                             <img src={ healthicon} alt="health icon" className="w-12 h-12" />
                     <h1 className="text-white text-3xl font-semibold">DiagnoAI</h1>
                     
                     </div>
                    
-                    <div>
-                        <CardCarousel/>
-                </div>
+                    <div className="mx-auto mt-[25rem]">
+                        <HomeCardCarousel/>
+                       
+                    </div>
                 </div>
 
               
