@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import { DevTool } from "@hookform/devtools";
 import { FaExclamationCircle } from 'react-icons/fa'
 import fullnameicon from "../assets/fullnameicon.png"
-// import FormModal from './FormModal'
+import { Navigate, useNavigate } from "react-router-dom"
+import ConfirmEmailScreen from '../pages/ConfirmEmailScreen';
 
 
 
@@ -25,10 +26,13 @@ const FormData = () => {
     const { register, control, handleSubmit, watch, reset, formState } = form
     const { errors } = formState
 
+    const Navigate = useNavigate()
+
     const onSubmit = (data) => {
         console.log("form submitted", data)
         // console.log(errors)
         reset() 
+        Navigate('/ConfirmEmailScreen')
     }
 
     
@@ -110,8 +114,14 @@ const FormData = () => {
                         {...register("date", {
                             required: 'Date of birth is required',
                             validate: (value) => {
-                            const isValidDate = !isNaN(Date.parse(value));
-                            return isValidDate || 'Invalid date';
+                                const isValidDate = !isNaN(Date.parse(value));
+                                if (!isValidDate) return 'Invalid date';
+                
+                                // Compare the entered year with the current year
+                                const enteredYear = new Date(value).getFullYear();
+                                const currentYear = new Date().getFullYear();
+                
+                                return enteredYear <= currentYear || 'Date cannot be in the future';
                             },
                         })}
                         className="w-full p-2 rounded-lg border-2 border-solid border-gray-300 outline-none placeholder:text-xs md:placeholder:text-lg md:p-4"
