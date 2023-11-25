@@ -12,7 +12,7 @@ import Li from './Li'
 
 const SideBar = ({ darkMode, toggleDarkMode }) => {
   return (
-    <aside className={`${darkMode ? '#fff' : '#000'} ${darkMode ? 'bg-[#282828]' : 'bg-[#fff]'} hidden  min-w-[18.5rem] pt-10 lg:grid border-r boreder-r-[#BDBDBD] h-screen fixed left-0`}>
+    <aside className={`${darkMode ? '#fff' : '#000'} ${darkMode ? 'bg-[#282828]' : 'bg-[#fff]'} hidden  min-w-[18.5rem] pt-10 lg:grid border-r boreder-r-[#BDBDBD] h-screen fixed left-0 top-0`}>
         <Button className={` mx-6  h-fit`}>+ New Chat</Button>
         <div className='self-end'>
             <hr className='w-full border-t border-t-[#BDBDBD]'/>

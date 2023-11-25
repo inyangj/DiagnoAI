@@ -11,8 +11,10 @@ const Chat = () => {
 
 
   return (
-    <main className={`${darkMode ? ' text-white' : ' text-black'} ${darkMode ? 'bg-[#282828]' : 'bg-[#fff]'}`}>
-        <SideBar  darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+    <main className={`${darkMode ? ' text-white' : ' text-black'} ${darkMode ? 'bg-[#282828]' : 'bg-[#fff]'} flex w-full`}>
+     
+      <div className='min-h-screen hidden  min-w-[18.5rem] pt-10 lg:flex'></div>
+      <SideBar  darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         <MainChat darkMode={darkMode} />
     </main>
   )

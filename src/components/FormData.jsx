@@ -5,6 +5,11 @@ import { FaExclamationCircle } from 'react-icons/fa'
 import fullnameicon from "../assets/fullnameicon.png"
 import { Navigate, useNavigate } from "react-router-dom"
 import ConfirmEmailScreen from '../pages/ConfirmEmailScreen';
+import sms from '../assets/svg/sms.svg'
+import key from '../assets/svg/key.svg'
+import eye from '../assets/svg/eye.svg'
+import eyeclose from '../assets/svg/eyeclose.svg'
+import calender from '../assets/calendar.png'
 
 
 
@@ -12,13 +17,29 @@ import ConfirmEmailScreen from '../pages/ConfirmEmailScreen';
 
 const FormData = () => {
 
+    const [fullnameFocus, setFullnameFocus] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
+    const [dateFocus, setDateFocus] = useState(false);
+    const [passwordFocus, setPasswordFocus] = useState(false);
+    const [confirmpasswordFocus, setConfirmPasswordFocus] = useState(false);
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [selectedDate, setSelectedDate] = useState('');
+
+    const handleDateChange = (event) => {
+      setSelectedDate(event.target.value);
+    };
+
+    const togglePasswordVisibility = () => {
+      setPasswordVisible(!passwordVisible);
+    };
+
     const form = useForm({
         defaultValues: {
             fullname: "",
             email: "",
+            gender: "",
             date: "",
-            password: "",  
-            confirm_password: "",
+            password: "", 
         }
        
     })
@@ -48,13 +69,19 @@ const FormData = () => {
 
 
                     <div className="w-full h-auto relative space-y-2">
-                            <label className="text-sm md:text-lg text-textgray">
+                            <label className="text-[0.875rem] text-textgray"  htmlFor="name">
                                 Full Name
                             </label>
 
-                        <input className="w-full p-2 rounded-lg border-2 border-solid
-                            border-gray300 outline-none placeholder:text-xs md:placeholder:text-lg md:p-4"
-                            type="text" id="fullname"  placeholder="Enter Your Full Name"
+                            <div className={`flex p-[0.75rem] border ${
+                                    fullnameFocus ? ' border-secondary' : 'border-gray_4'
+                                    } rounded-[0.27rem] items-center gap-2 mb-5`}
+                        >
+                            <img src={fullnameicon} alt="input-icon" />
+                            <input onFocus={() => setFullnameFocus(true)}
+                                onBlur={() => setFullnameFocus(false)}
+                                className="w-full bg-transparent pl-1 outline-none"
+                            type="text" id="fullname"  placeholder="First Name, Last Name"
                         {...register("fullname", {
                             required: {
                                 value: true,
@@ -62,6 +89,7 @@ const FormData = () => {
                             }
                            
                         })} />
+                        </div>
                          <div className="absolute inset-y-0 left-0 top-6 pl-2 flex items-center pointer-events-none">
                             
                            </div>
@@ -71,7 +99,7 @@ const FormData = () => {
                         flex-row gap-1 text-sm md:text-md'>
                         <FaExclamationCircle className="text-red-500 mt-1" 
                         />{errors.fullname?.message}</p>}
-                        </div>
+                    </div>
 
                 </div>
 
@@ -80,15 +108,23 @@ const FormData = () => {
 
 
                     <div className="w-full h-auto space-y-2">
-                    <label className="text-sm md:text-lg text-textgray">
+                    <label className="text-[0.875rem] text-textgray"  htmlFor="email">
                             Email Address
                         </label>
 
+                        <div className={`flex p-[0.75rem] border ${
+                            emailFocus ? ' border-secondary' : 'border-gray_4'
+                            } rounded-[0.27rem] items-center gap-2 mb-5`}
+                        >
+                                <img src={sms} alt="input-icon" />
+                        
                         <input
-                        className="w-full p-2 rounded-sm border-2 border-solid border-gray300 placeholder:text-xs md:placeholder:text-lg md:p-4"
+                        onFocus={() => setEmailFocus(true)}
+                        onBlur={() => setEmailFocus(false)} className="w-full bg-transparent pl-1 outline-none"
+                        name="email"
                         type="email"
                         id="email"
-                        placeholder="Enter Your Email"
+                        placeholder="johndoe@email.com"
                         {...register('email', {
                             required: 'Email is required',
                             pattern: {
@@ -97,6 +133,7 @@ const FormData = () => {
                               },
                           })}
                         />
+                        </div>
 
                         {errors.email?.message && (
                         <p className='text-red-500 flex flex-row gap-1 text-sm md:text-md'>
@@ -108,27 +145,71 @@ const FormData = () => {
 
 
                     <div className="w-full h-auto space-y-2">
-                    <label className="text-sm md:text-lg text-textgray">Date Of Birth</label>
+                    <label className="text-[0.875rem] text-textgray"  htmlFor="date">Gender</label>
 
-                        <input
+                    <div className={`flex p-[0.75rem] border ${
+                            dateFocus ? ' border-secondary' : 'border-gray_4'
+                            } rounded-[0.27rem] items-center gap-2 mb-5`}
+                        >
+                    <img src={calender} alt="input-icon" />
+                            
+                    <select
+                        onFocus={() => setDateFocus(true)}
+                        onBlur={() => setDateFocus(false)}
+                        className="w-full bg-transparent pl-1 outline-none"
+                        {...register("gender", {
+                            required: 'Please select a gender',
+                        })}
+                        id="gender"
+                    >
+                        <option value="" disabled selected hidden>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                     </div>
+
+                        {errors.date && (
+                        <p className='text-red-500 flex flex-row gap-1 text-sm md:text-md'>
+                            <FaExclamationCircle className="text-red-500 mt-1" />
+                            {errors.date.message}
+                        </p>
+                        )}
+                    </div>
+
+
+                    <div className="w-full h-auto space-y-2">
+                    <label className="text-[0.875rem] text-textgray"  htmlFor="date">Date Of Birth</label>
+
+                    <div className={`flex p-[0.75rem] border ${
+                            dateFocus ? ' border-secondary' : 'border-gray_4'
+                            } rounded-[0.27rem] items-center gap-2 mb-5`}
+                        >
+                    <img src={calender} alt="input-icon" />
+                            
+                    <input
+                        onFocus={() => setDateFocus(true)}
+                        onBlur={() => setDateFocus(false)}
+                        className="w-full bg-transparent pl-1 outline-none"
                         {...register("date", {
                             required: 'Date of birth is required',
                             validate: (value) => {
                                 const isValidDate = !isNaN(Date.parse(value));
                                 if (!isValidDate) return 'Invalid date';
-                
+
                                 // Compare the entered year with the current year
                                 const enteredYear = new Date(value).getFullYear();
                                 const currentYear = new Date().getFullYear();
-                
+
                                 return enteredYear <= currentYear || 'Date cannot be in the future';
                             },
                         })}
-                        className="w-full p-2 rounded-lg border-2 border-solid border-gray-300 outline-none placeholder:text-xs md:placeholder:text-lg md:p-4"
                         type="date"
                         id="date"
-                        placeholder="Enter Your Date Of Birth"
-                        />
+                        placeholder="dd/mm/yyyy"
+                    />
+                     </div>
 
                         {errors.date && (
                         <p className='text-red-500 flex flex-row gap-1 text-sm md:text-md'>
@@ -147,67 +228,47 @@ const FormData = () => {
 
 
                 <div className="w-full h-auto space-y-2">
-                <label className="text-sm md:text-lg text-textgray">
+                    <label className="text-[0.875rem] text-textgray">
                             Create Password
-                        </label>
+                    </label>
 
-                        <input className="w-full p-2 rounded-lg border-2 border-solid
-                        border-gray300 outline-none placeholder:text-xs md:placeholder:text-lg md:p-4 peer ..."
-                        type="password" id="password"  placeholder="Enter Your New Password" {...register(
-                            "password", {
-                                pattern: {
-                                    value: /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/,
-                                    message: "8-16 characters long, at least one capital/small letter, at least one symbol, at least one number",
-                                }
-                            }
-                        )} />
-                         {/* <p className='color-red text-sm md:text-md'>{errors.password?.message}</p> */}
+                        <div   className={`flex p-[0.75rem] border ${
+                        passwordFocus ? ' border-secondary' : 'border-gray_4'
+                        } rounded-[0.27rem] items-center gap-2 mb-8`}
+                        >
+                             <img src={key} alt="input-icon" />
+                    <input type={passwordVisible ? 'password' : 'text'}
+                    onFocus={() => setPasswordFocus(true)}
+                    onBlur={() => setPasswordFocus(false)}
+                    className="w-full appearance-none border-none outline-none focus:ring-0 bg-transparent pl-1"
+                    name="password"
+                    placeholder="ex. abc1234"
+                    id="password"
+                    
+                        {...register(
+                        "password", {
+                        pattern: {
+                            value: /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/,
+                            message: "8-16 characters long, at least one capital/small letter, at least one symbol, at least one number",
+                        }
+                        }
+                                )} />
+                            <img src={passwordVisible ? eyeclose : eye} onClick={togglePasswordVisibility} alt="input-icon" />
+                       
+                       </div>
                          {errors.password?.message && 
                         <p className='text-red-500 flex 
                         flex-row gap-1 text-sm md:text-md'>
                         <FaExclamationCircle className="text-red-500 mt-1" 
-                        />{errors.password?.message}</p>}
+                        /> {errors.password?.message}</p>}
                     </div>
 
-                    <div className="w-full h-auto space-y-2">
-                    <label className="text-sm md:text-lg text-textgray">
-                            Confirm Password
-                        </label>
-
-                        <input className="w-full p-2 rounded-lg border-2 border-solid
-                        border-gray300 outline-none placeholder:text-xs md:placeholder:text-lg md:p-4"
-                        type="password"
-                        id="confirmPassword"
-                        placeholder="Confirm Your New Password"
-                        {...register("confirm_password", {
-
-                            required: true,
-
-                            pattern: {   
-                             message: "Your passwords do not match",
-                            },
-                            validate: (val) => {
-                              if (watch('password') !== val) {
-                                return "Your passwords do no match"
-                              }
-                            },
-                           })}/>
-                            {/* <p className='color-red text-sm md:text-md'>{errors.confirm_password?.message}</p> */}
-
-                            {errors.confirm_password?.message && 
-                            <p className='text-red-500 flex 
-                            flex-row gap-1 text-sm md:text-md'>
-                            <FaExclamationCircle className="text-red-500 mt-1" 
-                            />{errors.confirm_password?.message}</p>}
-                    </div>
+                   
 
                   
                 </div>
 
-                      <button type="submit" 
-                      className="w-full p-3 mt-6
-                      bg-lightgreen text-white
-                      rounded-lg">
+                <button type="submit" className="w-full bg-secondary text-white font-Nohemi_Bold text-[0.875rem] py-2 rounded-[0.27rem] font-bold">
                        Create Account
                 </button>
                 {/* {isShown && (
