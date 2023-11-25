@@ -3,6 +3,35 @@
 @tailwind utilities;
 
 
+/* Import fonts */
+/* Font 1 - Regular */
+@font-face {
+  font-family: 'Nohemi-Regular';
+  font-weight: 400;
+  src: local('Nohemi-Regular'), url('./fonts/Nohemi-Regular.ttf') format('tff');
+}
+
+/* Font 1 - Bold */
+@font-face {
+  font-family: 'Nohemi-Bold';
+  font-weight: 700;
+  src: local('Nohemi-Bold') url('./fonts/Nohemi-Bold.otf') format('otf');
+}
+
+/* Font 2 - Regular */
+@font-face {
+  font-family: 'AeonikTRAIL-Regular';
+  font-weight: 400;
+  src: local('AeonikTRAIL-Regular') url('./fonts/AeonikTRIAL-Regular.otf') format('otf');
+}
+
+/* Font 2 - Bold */
+@font-face {
+  font-family: 'AeonikTRAIL-Bold';
+  font-weight: 700;
+  src: local('AeonikTRAIL-Bold') url('./fonts/AeonikTRIAL-Bold.otf') format('otf');
+}
+
 .card-container {
     display: flex;
     overflow: hidden;
@@ -40,6 +69,7 @@
     background-color: #ffffff; /* White color for active dot */
   }
 
+
   .background-image {
     background-image: url('./assets/authImage.png');
     background-size: cover;
@@ -48,4 +78,4 @@
     min-height: 100vh;
     width: 100%;
   }
-  
+
