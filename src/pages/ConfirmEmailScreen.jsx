@@ -24,7 +24,7 @@ const ConfirmEmailScreen = () => {
 
               
                
-                <div className="w-full flex flex-col items-start justify-center px-24 lg:w-1/2">
+                <div className="w-full mt-44 flex flex-col items-start justify-center px-24 lg:mt-1 lg:w-1/2">
                     <img src={confirmemaillogo} alt="confirm email logo" className="w-12" />
                     <h1 className="text-textprimary text-4xl font-bold">Verify email</h1>
                     <p className="text-sm text-textgray mt-2">

@@ -1,6 +1,7 @@
 import React from 'react'
 import menu from '../../assets/svg/menu.svg'
 import logo from '../../assets/svg/logoBlack.svg'
+import mainchatlogo from '../../assets/mainchatai.png'
 
 const MainChat = () => {
   return (
